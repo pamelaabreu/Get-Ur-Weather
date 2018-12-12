@@ -1,0 +1,284 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/* input:focus {
+    border: none;
+} */
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: flex-start;
+    align-content: flex-start; */
+}
+
+.row-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.row-space {
+    justify-content: space-around;
+}
+
+
+body{
+    background-image: url("https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif");
+    background-color: #FFE100;
+    background-repeat: no-repeat; 
+    background-size: cover;
+    /* background-image: url("https://www.muralswallpaper.com/app/uploads/peach-and-green-speckle-plain-820x532.jpg"); */
+}
+
+.opactiy{
+    opacity: 0.9;
+}
+
+.dark-violet{
+    background-color: #340068;
+}
+
+.light-violet{
+    background-color: #724CF9;
+}
+
+.yellow{
+    background-color: #FFE100;
+}
+
+.orange{
+    background-color: #FF784F;
+}
+
+
+.aqua-green{
+    background-color: #00A878;
+}
+
+.grey{
+    /* background-color: #eaeaea; */
+    /* background-image: url("https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif"); */
+    /* background-image: url("https://www.muralswallpaper.com/app/uploads/peach-and-green-speckle-plain-820x532.jpg"); */
+    /* https://png.pngtree.com/element_origin_min_pic/17/07/26/d417d308cba1e14e496fafd3c776b85e.jpg */
+}
+
+
+.border-4{
+    border:5px solid #340068;
+}
+
+.border-3{
+    border:5px solid #724CF9;
+}
+
+.border-2{
+    border:5px solid #FFE100;
+}
+
+.border-1{
+    border:5px solid #FF784F;
+}
+
+.border-0{
+    border:5px solid #00A878;
+}
+
+.col-75{
+    width: 75%;
+}
+
+.header-bar{
+    margin: 80px 300px 20px 90px;
+    padding: 40px;
+    /* border-top-right-radius: 10px; */
+    border-bottom-right-radius: 90px;
+    /* word-break: break-all; */
+}
+
+.header-title{
+    font-family: 'Bungee', cursive;
+    font-size: 65px;
+    color: white;
+    text-shadow: -15px 20px #340068;
+
+    display: block;
+    margin: 0px 0px 30px 50px;
+}
+
+.search-box{
+    margin: 0px 0px 30px 50px;
+
+    font-family: 'Bungee', cursive;
+    font-size: 30px;
+    color: #724CF9;
+}
+
+::placeholder{
+    color: #724CF9;   
+}
+
+.location-bar{
+    margin: 0px 0px 30px 70px;
+    padding: 20px;
+}
+
+.location-title{
+    font-family: 'Bungee', cursive;
+    font-size: 50px;
+    color: #eaeaea;
+    text-shadow: -10px 10px #340068;
+    
+    display: block;
+    padding: 10px 0px 10px 0px;
+    background-color: #ff784f;
+    /* background-image: 'https://www.muralswallpaper.com/app/uploads/peach-and-green-speckle-plain-820x532.jpg'; */
+    /* background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+.location-title-span{
+    position: relative;
+    top: 0px;
+    left: 30px;
+}
+
+.col-5{
+    width: 20%;
+}
+
+@media (max-width: 1070px) {
+    .col-5 {
+        width: 50%;
+    }
+}
+
+@media (max-width: 765px) {
+    .col-5 {
+        width: 75%;
+    }
+}
+
+.weather-bar{
+    margin: 0px 90px 0px 90px;
+    padding: 30px;
+}
+
+.weather-day{
+    border-radius: 60px;
+
+    word-break: break-all;
+}
+
+.weather-day:last-child{
+    margin-right: 0px;
+}
+
+.date-title, .day-title, .weather-condition, .weather-temp, .weather-temp-feels{
+    width: 100%;
+    text-align: center;
+}
+
+.date-title{
+    font-family: 'Bungee', cursive;
+    font-size: 20px;
+    color: #eaeaea;
+
+    display: block;
+    margin: 10px 30px 0px 30px
+}
+
+.day-title{
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    color: #eaeaea;
+
+    display: block;
+    margin: 10px;
+}
+
+
+.img{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+}
+
+/* .weather-condition{
+    position: relative;
+    top: -70px;
+    right: 0px;
+
+} */
+
+.weather-condition{
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+}
+
+.weather-temp{
+    font-family: 'Bungee', cursive;
+    font-size: 50px;
+}
+
+.weather-temp-feels{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+.weather-temp, .weather-temp-feels, .weather-condition {
+    color:white;
+
+    display: block;
+    margin: 10px 20px 10px 20px;
+}
+
+.made-pam{
+    margin: 150px 0px 30px 70px;
+    padding: 20px;
+    position: fixed;
+    bottom: 0px;
+}
+
+.made-pam-title{
+    font-family: 'Bungee', cursive;
+    font-size: 30px;
+    color: #eaeaea;
+    
+    display: block;
+    /* background-color: #eaeaea; */
+    /* background-image: 'https://www.muralswallpaper.com/app/uploads/peach-and-green-speckle-plain-820x532.jpg'; */
+    /* background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+a{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    color:white;
+    text-decoration-style: wavy;
+
+    display: block;
+
+}
+
+a:hover{
+    color: #FFE100;
+}
+
+a::after{
+    color:white;
+}
+
+/* style="
+position: fixed;
+top: 0;
+left: 0;
+margin: 0; */
+/* margin-bottom: 150px; */
+
+
