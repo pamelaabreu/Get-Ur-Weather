@@ -1,3 +1,19 @@
+class Storage {
+    constructor(key) {
+        this.key = key;
+    }
+    getStorage() {
+        const data = window.localStorage.getItem(this.key);
+        if (data) {
+            return JSON.parse(data);
+        }
+        return data;
+    }
+    save(data) {
+        window.localStorage.setItem(this.key, JSON.stringify(data))
+    }
+}
+
 const GETRequest = (url, cb) => {
     let request = new XMLHttpRequest();
     request.open('GET', url);
@@ -26,7 +42,7 @@ const getWeather = (lat, lng, cb) => {
     // TODO; apply some validation to lat, lng
 
     const URL_BASE = 'https://wt-taqqui_karim-gmail_com-0.sandbox.auth0-extend.com/darksky'
-    const api_key = `0620f6bb9d523aed8286e6574275de47`;
+    const api_key = `e6555822310158b5834ba11cf3c06549`;
     const url = `${URL_BASE}?api_key=${api_key}&lat=${lat}&lng=${lng}`
 
     GETRequest(url, data => {
@@ -35,7 +51,9 @@ const getWeather = (lat, lng, cb) => {
     });
 }
 
-const state = {
+const storage = new Storage('app-state');
+
+let state = {
     locations: [],
     gifs: {
         'partly-cloudy-day': 'https://media.giphy.com/media/M2Z8Td8gjo64/giphy.gif',
@@ -51,9 +69,10 @@ const state = {
 // }
 
 //OBJECTS
-let searchBox = document.querySelector('.js-search-box');
-let weatherBar = document.querySelector('.js-weather-bar');
-let locationTitle = document.querySelector('.js-location-title');
+const searchBox = document.querySelector('.js-search-box');
+const weatherBar = document.querySelector('.js-weather-bar');
+const locationTitle = document.querySelector('.js-location-title');
+let weather = document.querySelector('.js-weather');
 
 //HELPER
 const convertTime = (datetime) => {
@@ -68,10 +87,10 @@ const convertTime = (datetime) => {
 }
 
 const convertTimeZone = (timezone) => {
-    const splitCity = timezone.split('/');
-    const city = splitCity[1].trim();
+    let splitCity = timezone.split('/');
+    let city = splitCity[1].trim();
     if(city.includes('_')){
-        const part2 = city.split('_');
+        let part2 = city.split('_');
         city = `${part2[0]} ${part2[1]}`;
     }
 
@@ -83,12 +102,11 @@ const removeDashes = icon => {
     const splitIcon = icon.split('-');
     if(splitIcon > 1){
         for(let i=0; i<splitIcon.length; i++){
-            
+
         }
     }
     
 }
-
 
 const renderForecastItem = (forecastItem, state, i) => {
     // const day = getDayName(forecastItem.datetime)
@@ -107,30 +125,36 @@ const renderForecastItem = (forecastItem, state, i) => {
     </div>`
 }
 
-const renderLocation = (timezone) => {
-    return `<span class="location-title-span">${timezone}</span>`
+const renderLocation = (timezone, weatherBar) => {
+    return ` <section class="row location-bar">
+    <h2 class='js-location-title location-title'>
+    <span class="location-title-span">${timezone}</span>
+    </h2>
+    </section>
+    <section class='row row-space js-weather-bar weather-bar'>
+            ${weatherBar}
+        </section>`
 }
 
 const render = state => {
     let html = '';
-    for (let location of state.locations) {
+    for (let location of state.locations){
         let forecastHTML = '';
 
         for (let i = 0; i < 5; i++) {
             let forecastItem = location.forecast[i];
             forecastHTML += renderForecastItem(forecastItem, state, i);
         }
-        weatherBar.innerHTML = forecastHTML;
+        // weatherBar.innerHTML = forecastHTML;
 
-        html += renderLocation(location.timezone);
+        html += renderLocation(location.timezone, forecastHTML);
     }
 
-    locationTitle.innerHTML = html;
+    weather.innerHTML = html;
 
 }
 
 render(state)
-
 
 
 searchBox.addEventListener('keydown', e => {
@@ -187,9 +211,19 @@ searchBox.addEventListener('keydown', e => {
             };
 
             state.locations.unshift(location);
-            // storage.save(state);
+            storage.save(state);
             render(state);
         });
     }
 });
+
+// Checking if there is anything in the local storage
+const stored_state = storage.getStorage();
+if (stored_state) {
+    // If there is then apply that to my state in Memory
+    state = stored_state;
+}
+
+render(state);
+
 
